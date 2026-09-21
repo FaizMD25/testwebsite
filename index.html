@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Birthday Surprise 🎂</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- ==================================================
+         BACKGROUND
+    ================================================== -->
+
+    <div id="background">
+
+    <div class="stars"></div>
+    <div class="stars stars2"></div>
+    <div class="stars stars3"></div>
+
+    <div class="space-glow glow1"></div>
+    <div class="space-glow glow2"></div>
+
+    <div class="planet planet1"></div>
+    <div class="planet planet2"></div>
+
+    <div class="shooting-star star1"></div>
+    <div class="shooting-star star2"></div>
+    <div class="shooting-star star3"></div>
+
+    <div class="floating-heart">♡</div>
+    <div class="floating-heart heart2">♡</div>
+    <div class="floating-heart heart3">♡</div>
+
+    <div id="confetti"></div>
+
+    <div id="balloons"></div>
+
+</div>
+
+
+    <!-- ==================================================
+         MUSIC
+    ================================================== -->
+
+    <button
+        id="musicButton"
+        class="music-button"
+    >
+        🎵
+    </button>
+
+    <audio
+        id="music"
+        loop
+    >
+        <source
+            src="music/lagu.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+
+    <!-- ==================================================
+         INTRO
+    ================================================== -->
+
+    <section
+        id="intro"
+        class="screen"
+    >
+
+        <button id="helloButton">
+
+            Hello There...
+
+        </button>
+
+
+        <div
+            id="countdown"
+            class="hidden"
+        >
+            5
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         SURPRISE
+    ================================================== -->
+
+    <section
+        id="surprise"
+        class="screen hidden"
+    >
+
+        <p class="small-text">
+
+            Wait...
+
+        </p>
+
+
+        <h1>
+
+            There's something<br>
+            special for you
+
+        </h1>
+
+
+        <div
+            id="gift"
+            class="gift"
+        >
+
+            <div class="gift-lid">
+
+                <div class="ribbon"></div>
+
+            </div>
+
+
+            <div class="gift-box">
+
+                <div class="ribbon vertical"></div>
+
+            </div>
+
+
+            <div class="gift-bow">
+
+                🎀
+
+            </div>
+
+        </div>
+
+
+        <p class="click-text">
+
+            Click the gift 🎁
+
+        </p>
+
+    </section>
+
+
+    <!-- ==================================================
+         BIRTHDAY
+    ================================================== -->
+
+    <section
+        id="birthday"
+        class="screen hidden"
+    >
+
+        <div class="cake" id="cake">
+
+    <div class="candles">
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+
+    </div>
+
+    <div class="cake-top">
+        🎂
+    </div>
+
+</div>
+
+<div id="birthdayExplosion"></div>
+
+            <h1 class="birthday-title">
+
+                HAPPY BIRTHDAY!
+
+            </h1>
+
+
+            <p class="birthday-name">
+
+                To My Favorite Person ❤️
+
+            </p>
+
+        <button
+    
+            id="blowButton"
+            class="primary-button"
+>
+            ✨ Blow the Candles ✨
+            
+        </button>
+
+        </div>
+
+    </section>
+
+    <div id="bouquetContainer">
+
+    <div class="bouquet">
+
+        <div class="bouquet-flowers">
+
+            <span>🌹</span>
+            <span>🌷</span>
+            <span>🌸</span>
+            <span>🌺</span>
+            <span>🌹</span>
+            <span>🌸</span>
+            <span>🌷</span>
+            <span>🌺</span>
+            <span>🌼</span>
+
+        </div>
+
+        <div class="bouquet-paper">
+
+            <div class="bouquet-message">
+
+                <div class="bouquet-title">
+                    FOR YOU ❤️
+                </div>
+
+                <div class="bouquet-text">
+                    You deserve all
+                    the happiness
+                    in the world.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <!-- ==================================================
+         MEMORY INTRO
+    ================================================== -->
+
+    <section
+        id="memoryIntro"
+        class="screen hidden"
+    >
+
+        <div class="memory-icon">
+
+            📸
+
+        </div>
+
+
+        <h1>
+
+            Our Memories
+
+        </h1>
+
+
+        <p>
+
+            A few moments<br>
+            I want you to remember ❤️
+
+        </p>
+
+
+        <button
+            id="startGallery"
+            class="primary-button"
+        >
+
+            See Our Memories
+
+        </button>
+
+    </section>
+
+
+    <!-- ==================================================
+         GALLERY
+    ================================================== -->
+
+    <section
+        id="gallery"
+        class="screen hidden"
+    >
+
+        <div class="gallery-header">
+
+            <p>
+                OUR MEMORIES
+            </p>
+
+            <h1 id="galleryTitle">
+
+                Memory #1
+
+            </h1>
+
+        </div>
+
+
+        <div class="photo-frame">
+
+            <img
+                id="galleryImage"
+                src=""
+                alt="Memory"
+            >
+
+        </div>
+
+
+        <p id="photoCounter">
+
+            1 / 6
+
+        </p>
+
+
+        <div
+            id="dots"
+            class="dots"
+        ></div>
+
+
+        <button
+            id="nextPhoto"
+            class="primary-button"
+        >
+
+            Next ❤️
+
+        </button>
+
+    </section>
+
+
+    <!-- ==================================================
+         LETTER INTRO
+    ================================================== -->
+
+    <section
+        id="letterIntro"
+        class="screen hidden"
+    >
+
+        <div class="envelope">
+
+            💌
+
+        </div>
+
+
+        <h1>
+
+            One More Thing...
+
+        </h1>
+
+
+        <p>
+
+            I wrote something<br>
+            especially for you.
+
+        </p>
+
+
+        <button
+            id="openLetter"
+            class="primary-button"
+        >
+
+            Open My Letter 💌
+
+        </button>
+
+    </section>
+
+
+    <!-- ==================================================
+         LETTER
+    ================================================== -->
+
+    <section
+        id="letter"
+        class="screen hidden"
+    >
+
+        <div class="letter-paper">
+
+            <div class="letter-top">
+
+                💌
+
+            </div>
+
+
+            <p class="letter-small">
+
+                A little birthday message
+
+            </p>
+
+
+            <h1>
+
+                Happy Birthday ❤️
+
+            </h1>
+
+
+            <div
+                id="letterText"
+                class="letter-text"
+            ></div>
+
+
+            <button
+                id="finishLetter"
+                class="primary-button hidden"
+            >
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         ENDING
+    ================================================== -->
+
+    <section
+        id="ending"
+        class="screen hidden"
+    >
+
+        <div class="ending-content">
+
+            <div class="ending-heart">
+
+                ❤️
+
+            </div>
+
+
+            <p class="ending-small">
+
+                Before you go...
+
+            </p>
+
+
+            <h1>
+
+                Thank you<br>
+                for existing.
+
+            </h1>
+
+
+            <p class="ending-message">
+
+                You make the world<br>
+                a little brighter just by being in it.
+
+            </p>
+
+
+            <div class="final-message">
+
+                HAPPY BIRTHDAY ❤️
+
+            </div>
+
+
+            <div class="love-message">
+
+                I LOVE U SO MUCH, BEB.
+
+            </div>
+
+
+            <button
+                id="restart"
+                class="primary-button"
+            >
+
+                Replay Surprise ↻
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
