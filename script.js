@@ -1,44 +1,32 @@
-// =====================================================
-// ELEMENTS
-// =====================================================
+/* ==================================================
+   ELEMENTS
+================================================== */
 
-const intro =
-    document.getElementById("intro");
+const intro = document.getElementById("intro");
+const helloContainer = document.getElementById("helloContainer");
+const helloButton = document.getElementById("helloButton");
+const tapToBegin = document.getElementById("tapToBegin");
+const countdown = document.getElementById("countdown");
 
-const helloButton =
-    document.getElementById("helloButton");
+const surprise = document.getElementById("surprise");
+const gift = document.getElementById("gift");
 
-const countdown =
-    document.getElementById("countdown");
-
-const surprise =
-    document.getElementById("surprise");
-
-const gift =
-    document.getElementById("gift");
-
-const birthday =
-    document.getElementById("birthday");
-
-const cake =
-    document.getElementById("cake");
-
-const blowButton =
-    document.getElementById("blowButton");
-
+const birthday = document.getElementById("birthday");
+const blowButton = document.getElementById("blowButton");
 const birthdayExplosion =
-    document.getElementById(
-        "birthdayExplosion"
-    );
+    document.getElementById("birthdayExplosion");
+
+const bouquetContainer =
+    document.getElementById("bouquetContainer");
 
 const memoryIntro =
     document.getElementById("memoryIntro");
 
-const startGallery =
-    document.getElementById("startGallery");
-
 const gallery =
     document.getElementById("gallery");
+
+const startGallery =
+    document.getElementById("startGallery");
 
 const galleryImage =
     document.getElementById("galleryImage");
@@ -49,7 +37,7 @@ const galleryTitle =
 const photoCounter =
     document.getElementById("photoCounter");
 
-const dotsContainer =
+const dots =
     document.getElementById("dots");
 
 const nextPhoto =
@@ -82,444 +70,201 @@ const music =
 const musicButton =
     document.getElementById("musicButton");
 
-const confetti =
-    document.getElementById("confetti");
 
-const balloons =
-    document.getElementById("balloons");
 
+/* ==================================================
+   HELPER
+================================================== */
 
+function showScreen(screen) {
 
-// =====================================================
-// FOTO
-// =====================================================
+    document
+        .querySelectorAll(".screen")
+        .forEach(section => {
 
-const photos = [
+            section.classList.add("hidden");
 
-    "images/foto1.jpg",
+        });
 
-    "images/foto2.jpg",
+    screen.classList.remove("hidden");
 
-    "images/foto3.jpg",
+}
 
-    "images/foto4.jpg",
 
-    "images/foto5.jpg",
 
-    "images/foto6.jpg"
+/* ==================================================
+   HELLO / COUNTDOWN
+================================================== */
 
-];
+helloButton.addEventListener("click", () => {
 
+    /* Mulai musik setelah user melakukan klik */
+    startMusic();
 
 
-// =====================================================
-// JUDUL FOTO
-// =====================================================
+    helloContainer.classList.add("hide");
 
-const photoTitles = [
+    setTimeout(() => {
 
-    "Memory #1 ❤️",
+        countdown.classList.remove("hidden");
 
-    "Memory #2 ✨",
+        startCountdown();
 
-    "Memory #3 💕",
+    }, 600);
 
-    "Memory #4 🌸",
+});
 
-    "Memory #5 🥰",
 
-    "Memory #6 💖"
+function startCountdown() {
 
-];
+    let number = 5;
 
+    countdown.textContent = number;
 
+    countdown.style.animation =
+        "countPop .7s ease forwards";
 
-// =====================================================
-// VARIABLES
-// =====================================================
 
-let currentPhoto = 0;
+    const timer =
+        setInterval(() => {
 
-let musicPlaying = false;
+            number--;
 
-let countdownStarted = false;
+            if (number > 0) {
 
+                countdown.textContent =
+                    number;
 
+                countdown.style.animation =
+                    "none";
 
-// =====================================================
-// HELLO THERE
-// COUNTDOWN 5 DETIK
-// =====================================================
+                void countdown.offsetWidth;
 
-helloButton.addEventListener(
-    "click",
-    function () {
+                countdown.style.animation =
+                    "countPop .7s ease forwards";
 
-        // Mencegah countdown
-        // berjalan dua kali
+            }
 
-        if (countdownStarted) {
-            return;
-        }
 
-        countdownStarted = true;
+            if (number === 0) {
 
+                countdown.textContent =
+                    "✨";
 
-        // Sembunyikan Hello There
+            }
 
-        helloButton.style.display =
-            "none";
 
+            if (number < 0) {
 
-        // Tampilkan countdown
+                clearInterval(timer);
 
-        countdown.classList.remove(
-            "hidden"
-        );
+                countdown.classList.add(
+                    "hidden"
+                );
 
+                surprise.classList.remove(
+                    "hidden"
+                );
 
-        let number = 5;
+            }
 
-        countdown.textContent =
-            number;
+        }, 1000);
 
+}
 
-        // Animasi angka pertama
 
-        countdown.style.animation =
-            "none";
 
-        void countdown.offsetWidth;
+/* ==================================================
+   GIFT
+================================================== */
 
-        countdown.style.animation =
-            "countPop .8s ease";
+gift.addEventListener("click", () => {
 
+    surprise.classList.add("hidden");
 
-        // Countdown
+    birthday.classList.remove("hidden");
 
-        const timer =
-            setInterval(
-                function () {
+});
 
-                    number--;
 
 
-                    // ==========================
-                    // ANGKA 4 - 1
-                    // ==========================
-
-                    if (number >= 1) {
-
-                        countdown.textContent =
-                            number;
-
-
-                        // Restart animation
-
-                        countdown.style.animation =
-                            "none";
-
-                        void countdown.offsetWidth;
-
-                        countdown.style.animation =
-                            "countPop .8s ease";
-
-                    }
-
-
-                    // ==========================
-                    // COUNTDOWN SELESAI
-                    // ==========================
-
-                    else {
-
-                        clearInterval(timer);
-
-
-                        // Hilangkan countdown
-
-                        countdown.classList.add(
-                            "hidden"
-                        );
-
-
-                        // =================================
-                        // 🎵 PLAY MUSIK OTOMATIS
-                        // =================================
-
-                        music.play()
-                            .then(
-                                function () {
-
-                                    musicPlaying =
-                                        true;
-
-                                    musicButton.textContent =
-                                        "⏸️";
-
-                                }
-                            )
-                            .catch(
-                                function (error) {
-
-                                    console.log(
-                                        "Musik tidak dapat diputar:",
-                                        error
-                                    );
-
-                                }
-                            );
-
-
-                        // =================================
-                        // PINDAH KE HALAMAN SURPRISE
-                        // =================================
-
-                        intro.classList.add(
-                            "hidden"
-                        );
-
-
-                        surprise.classList.remove(
-                            "hidden"
-                        );
-
-                    }
-
-                },
-                1000
-            );
-
-    }
-);
-
-
-
-// =====================================================
-// GIFT
-// KLIK KADO
-// =====================================================
-
-gift.addEventListener(
-    "click",
-    function () {
-
-        // Efek confetti
-
-        createConfetti(70);
-
-
-        // Efek balon
-
-        createBalloons(8);
-
-
-        // Sembunyikan surprise
-
-        surprise.classList.add(
-            "hidden"
-        );
-
-
-        // Tampilkan birthday
-
-        birthday.classList.remove(
-            "hidden"
-        );
-
-    }
-);
-
-
-
-// =====================================================
-// BLOW CANDLES
-// EXPLOSION → 5 DETIK → FLOWERS → MEMORIES
-// =====================================================
+/* ==================================================
+   BIRTHDAY EXPLOSION
+================================================== */
 
 blowButton.addEventListener(
     "click",
-    function () {
+    () => {
 
-        // Jangan bisa diklik dua kali
+        createBirthdayExplosion();
 
-        blowButton.disabled = true;
+        blowButton.style.opacity = "0";
+
+        blowButton.style.pointerEvents =
+            "none";
+
+        setTimeout(() => {
+
+            blowButton.style.display =
+                "none";
+
+        }, 500);
 
 
-        // =============================================
-        // MATIKAN SEMUA API
-        // =============================================
+        setTimeout(() => {
 
-        document
-            .querySelectorAll(".flame")
-            .forEach(
-                function (flame) {
+            birthday.classList.add(
+                "hidden"
+             );  
 
-                    flame.style.display =
-                        "none";
-
-                }
+            memoryIntro.classList.remove(
+                "hidden"
             );
 
-
-        // =============================================
-        // GETARKAN KUE
-        // =============================================
-
-        if (cake) {
-
-            cake.classList.add(
-                "exploding"
-            );
-
-        }
-
-
-        // =============================================
-        // LEDAKAN
-        // =============================================
-
-        createExplosion();
-
-
-        // =============================================
-        // CONFETTI
-        // =============================================
-
-        createConfetti(120);
-
-
-        // =============================================
-        // BALON
-        // =============================================
-
-        createBalloons(12);
-
-
-        // =============================================
-        // UBAH TOMBOL
-        // =============================================
-
-        blowButton.textContent =
-            "✨ Make a Wish ✨";
-
-
-        // =============================================
-        // TUNGGU 5 DETIK
-        // =============================================
-
-        setTimeout(
-            function () {
-
-                // Munculkan bunga
-
-                showBouquet();
-
-            },
-            5000
-        );
-
-
-        // =============================================
-        // SETELAH BUNGA
-        // MASUK KE MEMORIES
-        // =============================================
-
-        setTimeout(
-    function () {
-
-        const bouquet =
-            document.getElementById(
-                "bouquetContainer"
-            );
-
-        if (bouquet) {
-
-            bouquet.classList.remove(
-                "show"
-            );
-
-        }
-
-
-        birthday.classList.add(
-            "hidden"
-        );
-
-
-        memoryIntro.classList.remove(
-            "hidden"
-        );
-
-    },
-    10000
-);
-
+        }, 1800);
     }
 );
 
 
 
-// =====================================================
-// CREATE EXPLOSION
-// =====================================================
+function createBirthdayExplosion() {
 
-function createExplosion() {
-
-    // Pastikan element tersedia
-
-    if (!birthdayExplosion) {
-        return;
-    }
+    birthdayExplosion.innerHTML = "";
 
 
-    // Kosongkan ledakan sebelumnya
+    /* =========================================
+       CORE
+    ========================================= */
 
-    birthdayExplosion.innerHTML =
-        "";
+    const core =
+        document.createElement("div");
 
+    core.className =
+        "explosion-core";
 
-    // =================================
-    // FLASH
-    // =================================
-
-    const flash =
-        document.createElement(
-            "div"
-        );
-
-    flash.className =
-        "explosion-flash";
+    birthdayExplosion.appendChild(core);
 
 
-    birthdayExplosion.appendChild(
-        flash
-    );
 
-
-    // =================================
-    // SHOCKWAVE
-    // =================================
+    /* =========================================
+       RING
+    ========================================= */
 
     const ring =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
     ring.className =
         "explosion-ring";
 
-
-    birthdayExplosion.appendChild(
-        ring
-    );
+    birthdayExplosion.appendChild(ring);
 
 
-    // =================================
-    // PARTICLES
-    // =================================
 
-    const particleCount = 55;
+    /* =========================================
+       PARTICLES
+    ========================================= */
+
+    const particleCount = 45;
 
 
     for (
@@ -529,16 +274,11 @@ function createExplosion() {
     ) {
 
         const particle =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
         particle.className =
             "explosion-particle";
 
-
-        // Sudut random
 
         const angle =
             Math.random() *
@@ -546,21 +286,16 @@ function createExplosion() {
             2;
 
 
-        // Jarak random
-
         const distance =
             100 +
-            Math.random() * 300;
+            Math.random() *
+            300;
 
-
-        // Posisi X
 
         const x =
             Math.cos(angle) *
             distance;
 
-
-        // Posisi Y
 
         const y =
             Math.sin(angle) *
@@ -579,19 +314,10 @@ function createExplosion() {
         );
 
 
-        // Ukuran random
-
-        const size =
-            4 +
-            Math.random() * 8;
-
-
-        particle.style.width =
-            `${size}px`;
-
-
-        particle.style.height =
-            `${size}px`;
+        particle.style.setProperty(
+            "--delay",
+            `${Math.random() * .2}s`
+        );
 
 
         birthdayExplosion.appendChild(
@@ -601,122 +327,183 @@ function createExplosion() {
     }
 
 
-    // =================================
-    // BERSIHKAN
-    // =================================
 
-    setTimeout(
-        function () {
+    /* =========================================
+       HEARTS
+    ========================================= */
 
-            birthdayExplosion.innerHTML =
-                "";
+    const hearts = [
 
-        },
-        1600
-    );
+        "❤️",
+        "💗",
+        "💖",
+        "✨",
+        "💕"
+
+    ];
 
 
-    // Hapus class getar
+    for (
+        let i = 0;
+        i < 15;
+        i++
+    ) {
 
-    setTimeout(
-        function () {
+        const heart =
+            document.createElement("div");
 
-            if (cake) {
+        heart.className =
+            "explosion-heart";
 
-                cake.classList.remove(
-                    "exploding"
-                );
 
-            }
+        heart.textContent =
+            hearts[
+                Math.floor(
+                    Math.random() *
+                    hearts.length
+                )
+            ];
 
-        },
-        700
-    );
 
-}
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
 
-// =====================================================
-// SHOW BOUQUET
-// =====================================================
 
-function showBouquet() {
+        const distance =
+            120 +
+            Math.random() *
+            260;
 
-    const bouquet =
-        document.getElementById(
-            "bouquetContainer"
+
+        const x =
+            Math.cos(angle) *
+            distance;
+
+
+        const y =
+            Math.sin(angle) *
+            distance;
+
+
+        heart.style.setProperty(
+            "--x",
+            `${x}px`
         );
 
-    if (!bouquet) {
-        return;
+
+        heart.style.setProperty(
+            "--y",
+            `${y}px`
+        );
+
+
+        heart.style.setProperty(
+            "--rotate",
+            `${Math.random() * 360}deg`
+        );
+
+
+        heart.style.setProperty(
+            "--delay",
+            `${Math.random() * .3}s`
+        );
+
+
+        birthdayExplosion.appendChild(
+            heart
+        );
+
     }
 
-    bouquet.classList.add(
-        "show"
-    );
+
+    setTimeout(() => {
+
+        birthdayExplosion.innerHTML =
+            "";
+
+    }, 2000);
 
 }
 
-// =====================================================
-// START GALLERY
-// =====================================================
+/* ==================================================
+   GALLERY
+================================================== */
+
+const photos = [
+    "images/foto1.jpg",
+    "images/foto2.jpeg",
+    "images/foto3.jpeg",
+    "images/foto4.jpeg",
+    "images/foto5.jpeg",
+    "images/foto6.jpeg",
+    "images/foto7.jpeg",
+    "images/foto8.jpeg",
+    "images/foto9.jpeg",
+    "images/foto10.jpeg",
+    "images/foto11.jpeg",
+    "images/foto12.jpeg",
+    "images/foto13.jpeg",
+    "images/foto14.jpeg",
+    "images/foto15.jpeg",
+    "images/foto16.jpeg"
+];
+
+
+let currentPhoto = 0;
+
 
 startGallery.addEventListener(
     "click",
-    function () {
-
-        // Sembunyikan intro
+    () => {
 
         memoryIntro.classList.add(
             "hidden"
         );
 
-
-        // Tampilkan gallery
-
         gallery.classList.remove(
             "hidden"
         );
 
-
-        // Reset foto
-
-        currentPhoto = 0;
-
-
-        // Buat indicator
-
-        createDots();
-
-
-        // Tampilkan foto pertama
-
-        showPhoto();
+        showPhoto(0);
 
     }
 );
 
 
+function showPhoto(index) {
 
-// =====================================================
-// CREATE PHOTO DOTS
-// =====================================================
+    currentPhoto = index;
 
-function createDots() {
+    galleryImage.src =
+        photos[currentPhoto];
 
-    dotsContainer.innerHTML =
-        "";
+    galleryTitle.textContent =
+        `Memory #${currentPhoto + 1}`;
+
+    photoCounter.textContent =
+        `${currentPhoto + 1} / ${photos.length}`;
+
+
+    dots.innerHTML = "";
 
 
     photos.forEach(
-        function (_, index) {
+        (_, i) => {
 
             const dot =
                 document.createElement(
-                    "span"
+                    "div"
                 );
 
+            dot.className =
+                "dot";
 
-            if (index === 0) {
+
+            if (
+                i === currentPhoto
+            ) {
 
                 dot.classList.add(
                     "active"
@@ -725,200 +512,63 @@ function createDots() {
             }
 
 
-            // Dot juga bisa diklik
-
-            dot.addEventListener(
-                "click",
-                function () {
-
-                    currentPhoto =
-                        index;
-
-                    showPhoto();
-
-                }
-            );
-
-
-            dotsContainer.appendChild(
-                dot
-            );
+            dots.appendChild(dot);
 
         }
     );
 
 }
 
-
-
-// =====================================================
-// SHOW PHOTO
-// =====================================================
-
-function showPhoto() {
-
-    // Fade out
-
-    galleryImage.style.opacity =
-        "0";
-
-
-    setTimeout(
-        function () {
-
-            // ==============================
-            // FOTO
-            // ==============================
-
-            galleryImage.src =
-                photos[currentPhoto];
-
-
-            // ==============================
-            // JUDUL
-            // ==============================
-
-            galleryTitle.textContent =
-                photoTitles[currentPhoto];
-
-
-            // ==============================
-            // COUNTER
-            // ==============================
-
-            photoCounter.textContent =
-                `${currentPhoto + 1} / ${photos.length}`;
-
-
-            // ==============================
-            // FADE IN
-            // ==============================
-
-            galleryImage.style.opacity =
-                "1";
-
-
-            // ==============================
-            // DOTS
-            // ==============================
-
-            const dots =
-                dotsContainer
-                    .querySelectorAll(
-                        "span"
-                    );
-
-
-            dots.forEach(
-                function (
-                    dot,
-                    index
-                ) {
-
-                    dot.classList.toggle(
-                        "active",
-                        index ===
-                        currentPhoto
-                    );
-
-                }
-            );
-
-
-            // ==============================
-            // BUTTON
-            // ==============================
-
-            if (
-                currentPhoto ===
-                photos.length - 1
-            ) {
-
-                nextPhoto.textContent =
-                    "Open My Letter 💌";
-
-            }
-
-            else {
-
-                nextPhoto.textContent =
-                    "Next ❤️";
-
-            }
-
-        },
-        200
-    );
-
-}
-
-
-
-// =====================================================
-// NEXT PHOTO
-// =====================================================
 
 nextPhoto.addEventListener(
     "click",
-    function () {
+    () => {
 
-        // Kalau belum foto terakhir
+        currentPhoto++;
+
 
         if (
-            currentPhoto <
-            photos.length - 1
+            currentPhoto >=
+            photos.length
         ) {
-
-            currentPhoto++;
-
-            showPhoto();
-
-        }
-
-
-        // Kalau sudah foto terakhir
-
-        else {
 
             gallery.classList.add(
                 "hidden"
             );
 
-
             letterIntro.classList.remove(
                 "hidden"
             );
 
+            return;
+
         }
+
+
+        showPhoto(
+            currentPhoto
+        );
 
     }
 );
 
 
 
-// =====================================================
-// OPEN LETTER
-// =====================================================
+/* ==================================================
+   LETTER
+================================================== */
 
 openLetter.addEventListener(
     "click",
-    function () {
-
-        // Sembunyikan intro
+    () => {
 
         letterIntro.classList.add(
             "hidden"
         );
 
-
-        // Tampilkan surat
-
         letter.classList.remove(
             "hidden"
         );
-
-
-        // Mulai efek mengetik
 
         typeLetter();
 
@@ -926,42 +576,30 @@ openLetter.addEventListener(
 );
 
 
+const message = `Happy Birthday to someone truly special. ❤️
 
-// =====================================================
-// LETTER TYPING
-// =====================================================
+Today is the day someone gets older. I may not always be able to put everything into words.
+but I want you to know how grateful I am to have you in my life. Your presence makes ordinary moments feel a little more meaningful, and your smile has a way of making everything feel a little brighter.
+And I hope you know just how precious you are.
+
+May you always find me for reasons to smile, people who genuinely care about you, and the courage to chase everything your heart desires.
+And also i hope may find ur peace and happiness in me. Thank you for being you all the time. 
+
+Maybe this isn't much, but honestly, I wish I could give you so much more. And i'm always trying to.
+But for now, all I can give you is this.
+Thank you for being you. Thank you for existing. And thank you for becoming one of the people who make my world a little brighter.
+
+I'm with you till the end of the line.
+
+And remember one thing, with great power comes great responsibility.
+
+Happy Birthday ❤️
+I Love You So much Beb`;
+
 
 function typeLetter() {
 
-    const text =
-`Happy Birthday, Beb ❤️
-
-Hari ini adalah hari yang spesial, karena seseorang yang sangat berarti lahir ke dunia.
-
-Aku berharap di umur yang baru ini kamu mendapatkan banyak kebahagiaan, kesehatan, dan semua hal baik yang kamu impikan.
-
-Semoga setiap langkahmu selalu dipenuhi hal-hal indah.
-
-Terima kasih sudah menjadi seseorang yang begitu spesial.
-
-Terima kasih untuk semua senyum, cerita, dan momen yang sudah kita lewati.
-
-Whatever happens, I hope you always remember that you deserve to be happy.
-
-Enjoy your special day.
-
-And once again...
-
-Happy Birthday, my favorite person. ❤️`;
-
-
-    // Kosongkan teks
-
-    letterText.textContent =
-        "";
-
-
-    // Sembunyikan tombol
+    letterText.textContent = "";
 
     finishLetter.classList.add(
         "hidden"
@@ -971,153 +609,124 @@ Happy Birthday, my favorite person. ❤️`;
     let index = 0;
 
 
-    // =================================
-    // TYPING FUNCTION
-    // =================================
-
-    function type() {
-
-        if (
-            index <
-            text.length
-        ) {
+    const typing =
+        setInterval(() => {
 
             letterText.textContent +=
-                text[index];
-
+                message[index];
 
             index++;
 
 
-            let speed = 35;
-
-
-            // Jeda ketika enter
-
             if (
-                text[index - 1] ===
-                "\n"
+                index >=
+                message.length
             ) {
 
-                speed = 180;
+                clearInterval(typing);
+
+                finishLetter.classList.remove(
+                    "hidden"
+                );
 
             }
 
-
-            setTimeout(
-                type,
-                speed
-            );
-
-        }
-
-        else {
-
-            // Surat selesai
-
-            finishLetter.classList.remove(
-                "hidden"
-            );
-
-        }
-
-    }
-
-
-    type();
+        }, 35);
 
 }
 
 
 
-// =====================================================
-// FINISH LETTER
-// =====================================================
-
 finishLetter.addEventListener(
     "click",
-    function () {
-
-        // Sembunyikan surat
+    () => {
 
         letter.classList.add(
             "hidden"
         );
 
-
-        // Tampilkan ending
-
         ending.classList.remove(
             "hidden"
         );
-
-
-        // Efek akhir
-
-        createConfetti(120);
-
-        createBalloons(15);
 
     }
 );
 
 
 
-// =====================================================
-// MUSIC
-// AUTO PLAY + PLAY / PAUSE
-// =====================================================
+/* ==================================================
+   MUSIC
+================================================== */
 
-musicButton.addEventListener(
-    "click",
-    async function () {
-
-        // ===============================
-        // PLAY
-        // ===============================
-
-        if (
-            music.paused
-        ) {
-
-            try {
-
-                await music.play();
+let musicPlaying = false;
 
 
-                musicPlaying =
-                    true;
+/* =========================================
+   PLAY MUSIC
+========================================= */
 
+function startMusic() {
+
+    music.volume = 0.5;
+
+    const playPromise = music.play();
+
+    if (playPromise !== undefined) {
+
+        playPromise
+            .then(() => {
+
+                musicPlaying = true;
 
                 musicButton.textContent =
                     "⏸️";
 
-            }
-
-            catch (error) {
+            })
+            .catch(() => {
 
                 console.log(
-                    "Musik tidak dapat diputar:",
-                    error
+                    "Music gagal diputar."
                 );
 
-            }
+            });
 
-        }
+    }
+
+}
 
 
-        // ===============================
-        // PAUSE
-        // ===============================
+/* =========================================
+   MUSIC BUTTON
+========================================= */
 
-        else {
+musicButton.addEventListener(
+    "click",
+    () => {
+
+        if (music.paused) {
+
+            music.play()
+                .then(() => {
+
+                    musicPlaying = true;
+
+                    musicButton.textContent =
+                        "⏸️";
+
+                })
+                .catch(() => {
+
+                    console.log(
+                        "Music tidak dapat diputar."
+                    );
+
+                });
+
+        } else {
 
             music.pause();
 
-
-            musicPlaying =
-                false;
-
+            musicPlaying = false;
 
             musicButton.textContent =
                 "🎵";
@@ -1128,257 +737,13 @@ musicButton.addEventListener(
 );
 
 
-
-// =====================================================
-// MUSIC STATE
-// Kalau musik selesai / error
-// =====================================================
-
-music.addEventListener(
-    "play",
-    function () {
-
-        musicPlaying =
-            true;
-
-
-        musicButton.textContent =
-            "⏸️";
-
-    }
-);
-
-
-music.addEventListener(
-    "pause",
-    function () {
-
-        musicPlaying =
-            false;
-
-
-        musicButton.textContent =
-            "🎵";
-
-    }
-);
-
-
-
-// =====================================================
-// CONFETTI
-// =====================================================
-
-function createConfetti(
-    amount
-) {
-
-    const symbols = [
-
-        "✦",
-
-        "♥",
-
-        "•",
-
-        "✧",
-
-        "★",
-
-        "♡"
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
-
-        const piece =
-            document.createElement(
-                "div"
-            );
-
-
-        piece.className =
-            "confetti-piece";
-
-
-        // Simbol random
-
-        piece.textContent =
-            symbols[
-                Math.floor(
-                    Math.random() *
-                    symbols.length
-                )
-            ];
-
-
-        // Posisi random
-
-        piece.style.left =
-            Math.random() *
-            100 +
-            "%";
-
-
-        // Ukuran random
-
-        piece.style.fontSize =
-            (
-                8 +
-                Math.random() *
-                15
-            ) +
-            "px";
-
-
-        // Durasi random
-
-        piece.style.animationDuration =
-            (
-                2 +
-                Math.random() *
-                3
-            ) +
-            "s";
-
-
-        // Delay random
-
-        piece.style.animationDelay =
-            Math.random() *
-            1.5 +
-            "s";
-
-
-        confetti.appendChild(
-            piece
-        );
-
-
-        // Hapus
-
-        setTimeout(
-            function () {
-
-                piece.remove();
-
-            },
-            6000
-        );
-
-    }
-
-}
-
-
-
-// =====================================================
-// BALLOONS
-// =====================================================
-
-function createBalloons(
-    amount
-) {
-
-    const balloonSymbols = [
-
-        "🎈",
-
-        "🎈",
-
-        "🎈"
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
-
-        const balloon =
-            document.createElement(
-                "div"
-            );
-
-
-        balloon.className =
-            "balloon";
-
-
-        // Simbol
-
-        balloon.textContent =
-            balloonSymbols[
-                Math.floor(
-                    Math.random() *
-                    balloonSymbols.length
-                )
-            ];
-
-
-        // Posisi random
-
-        balloon.style.left =
-            Math.random() *
-            100 +
-            "%";
-
-
-        // Durasi random
-
-        balloon.style.animationDuration =
-            (
-                5 +
-                Math.random() *
-                4
-            ) +
-            "s";
-
-
-        // Delay random
-
-        balloon.style.animationDelay =
-            Math.random() *
-            2 +
-            "s";
-
-
-        balloons.appendChild(
-            balloon
-        );
-
-
-        // Hapus setelah selesai
-
-        setTimeout(
-            function () {
-
-                balloon.remove();
-
-            },
-            10000
-        );
-
-    }
-
-}
-
-
-
-// =====================================================
-// RESTART
-// =====================================================
+/* ==================================================
+   RESTART
+================================================== */
 
 restart.addEventListener(
     "click",
-    function () {
+    () => {
 
         location.reload();
 
