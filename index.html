@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -15,9 +16,12 @@
         rel="stylesheet"
         href="style.css"
     >
+
 </head>
 
+
 <body>
+
 
     <!-- ==================================================
          BACKGROUND
@@ -25,33 +29,34 @@
 
     <div id="background">
 
-    <div class="stars"></div>
-    <div class="stars stars2"></div>
-    <div class="stars stars3"></div>
+        <div class="stars"></div>
+        <div class="stars stars2"></div>
+        <div class="stars stars3"></div>
 
-    <div class="space-glow glow1"></div>
-    <div class="space-glow glow2"></div>
+        <div class="space-glow glow1"></div>
+        <div class="space-glow glow2"></div>
 
-    <div class="planet planet1"></div>
-    <div class="planet planet2"></div>
+        <div class="planet planet1"></div>
+        <div class="planet planet2"></div>
 
-    <div class="shooting-star star1"></div>
-    <div class="shooting-star star2"></div>
-    <div class="shooting-star star3"></div>
+        <div class="shooting-star star1"></div>
+        <div class="shooting-star star2"></div>
+        <div class="shooting-star star3"></div>
 
-    <div class="floating-heart">♡</div>
-    <div class="floating-heart heart2">♡</div>
-    <div class="floating-heart heart3">♡</div>
+        <div class="floating-heart">♡</div>
+        <div class="floating-heart heart2">♡</div>
+        <div class="floating-heart heart3">♡</div>
 
-    <div id="confetti"></div>
+        <div id="confetti"></div>
 
-    <div id="balloons"></div>
+        <div id="balloons"></div>
 
-</div>
+    </div>
 
 
-    <!-- ==================================================
-         MUSIC
+
+   <!-- ==================================================
+     MUSIC
     ================================================== -->
 
     <button
@@ -64,12 +69,14 @@
     <audio
         id="music"
         loop
+        preload="auto"
     >
         <source
-            src="music/lagu.mp3"
+            src="./music/lagu.mp3"
             type="audio/mpeg"
         >
     </audio>
+
 
 
     <!-- ==================================================
@@ -81,11 +88,22 @@
         class="screen"
     >
 
-        <button id="helloButton">
+        <div id="helloContainer">
 
-            Hello There...
+            <button id="helloButton">
 
-        </button>
+                Hello There...
+
+            </button>
+
+
+            <div id="tapToBegin">
+
+                Tap to Begin
+
+            </div>
+
+        </div>
 
 
         <div
@@ -96,6 +114,7 @@
         </div>
 
     </section>
+
 
 
     <!-- ==================================================
@@ -159,6 +178,7 @@
     </section>
 
 
+
     <!-- ==================================================
          BIRTHDAY
     ================================================== -->
@@ -168,98 +188,49 @@
         class="screen hidden"
     >
 
-        <div class="cake" id="cake">
+        <div
+            class="cake"
+            id="cake"
+        >
 
-    <div class="candles">
+            <div class="cake-top">
 
-        <div class="candle">
-            <div class="flame"></div>
-        </div>
-
-        <div class="candle">
-            <div class="flame"></div>
-        </div>
-
-        <div class="candle">
-            <div class="flame"></div>
-        </div>
-
-    </div>
-
-    <div class="cake-top">
-        🎂
-    </div>
-
-</div>
-
-<div id="birthdayExplosion"></div>
-
-            <h1 class="birthday-title">
-
-                HAPPY BIRTHDAY!
-
-            </h1>
-
-
-            <p class="birthday-name">
-
-                To My Favorite Person ❤️
-
-            </p>
-
-        <button
-    
-            id="blowButton"
-            class="primary-button"
->
-            ✨ Blow the Candles ✨
-            
-        </button>
-
-        </div>
-
-    </section>
-
-    <div id="bouquetContainer">
-
-    <div class="bouquet">
-
-        <div class="bouquet-flowers">
-
-            <span>🌹</span>
-            <span>🌷</span>
-            <span>🌸</span>
-            <span>🌺</span>
-            <span>🌹</span>
-            <span>🌸</span>
-            <span>🌷</span>
-            <span>🌺</span>
-            <span>🌼</span>
-
-        </div>
-
-        <div class="bouquet-paper">
-
-            <div class="bouquet-message">
-
-                <div class="bouquet-title">
-                    FOR YOU ❤️
-                </div>
-
-                <div class="bouquet-text">
-                    You deserve all
-                    the happiness
-                    in the world.
-                </div>
+                🎂
 
             </div>
 
         </div>
 
-    </div>
 
-</div>
+        <!-- EFFECT LEDAKAN -->
 
+        <div id="birthdayExplosion"></div>
+
+
+        <h1 class="birthday-title">
+
+            HAPPY BIRTHDAY BEBB!!!
+
+        </h1>
+
+
+        <p class="birthday-name">
+
+            To My Favorite Person ❤️
+
+        </p>
+
+
+        <button
+            id="blowButton"
+            class="primary-button"
+        >
+
+            ✨ Blow the Candles ✨
+
+        </button>
+
+    </section>
 
     <!-- ==================================================
          MEMORY INTRO
@@ -279,16 +250,15 @@
 
         <h1>
 
-            Our Memories
+            A Glimpse of You ❤️ 
 
         </h1>
 
 
         <p>
 
-            A few moments<br>
-            I want you to remember ❤️
-
+            And a little bit of us 
+         
         </p>
 
 
@@ -304,6 +274,7 @@
     </section>
 
 
+
     <!-- ==================================================
          GALLERY
     ================================================== -->
@@ -316,8 +287,11 @@
         <div class="gallery-header">
 
             <p>
+
                 OUR MEMORIES
+
             </p>
+
 
             <h1 id="galleryTitle">
 
@@ -341,7 +315,7 @@
 
         <p id="photoCounter">
 
-            1 / 6
+            1 / 16
 
         </p>
 
@@ -362,6 +336,7 @@
         </button>
 
     </section>
+
 
 
     <!-- ==================================================
@@ -405,6 +380,7 @@
         </button>
 
     </section>
+
 
 
     <!-- ==================================================
@@ -457,6 +433,7 @@
         </div>
 
     </section>
+
 
 
     <!-- ==================================================
@@ -526,6 +503,7 @@
         </div>
 
     </section>
+
 
 
     <script src="script.js"></script>
